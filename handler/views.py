@@ -120,8 +120,6 @@ class FormDataAPIView(APIView):
                 "performanceImpact", "usageDistraction", "beneficialSubjects",
                 "usageSymptoms", "symptomFrequency", "healthPrecautions"
             ]
-            
-            print(serializer.data)
 
             # Prepare input data for the model
             input_data = {key: serializer.data[key] for key in features if key in serializer.data}
@@ -186,8 +184,6 @@ class FormDataAPIView(APIView):
                 "prediction": health_rating,  # Now returns "Excellent", "Good", etc.
                 "description": graph_impact.invoke({"question": input_df_string})["answer"]
             }
-
-            print(data)
 
             return Response({"status": 200, "message": "Data saved successfully", "data": data}, status=status.HTTP_201_CREATED)
 
